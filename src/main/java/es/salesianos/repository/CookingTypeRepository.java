@@ -1,8 +1,11 @@
 package es.salesianos.repository;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -29,6 +32,12 @@ public class CookingTypeRepository {
 
 	}
 
+	public List<CookingType> listAll() {
+		String sql = "SELECT * FROM COOKINGTYPE";
+		List<CookingType> cookingTypes = template.query(sql, new BeanPropertyRowMapper(CookingType.class));
+		return cookingTypes;
+	}
+
 	public JdbcTemplate getTemplate() {
 		return template;
 	}
@@ -44,5 +53,6 @@ public class CookingTypeRepository {
 	public void setNamedJdbcTemplate(NamedParameterJdbcTemplate namedJdbcTemplate) {
 		this.namedJdbcTemplate = namedJdbcTemplate;
 	}
+
 
 }
