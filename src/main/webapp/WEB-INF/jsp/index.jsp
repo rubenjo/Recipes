@@ -38,7 +38,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="ingredient" items="${ingredients}">
+			<c:forEach var="ingredient" items="${recipe.ingredients}">
 				<tr>
 					<td><c:out value="${ingredient.name}" /></td>
 				</tr>
@@ -65,7 +65,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="cookingTool" items="${cookingTools}">
+			<c:forEach var="cookingTool" items="${recipe.tools}">
 				<tr>
 					<td><c:out value="${cookingTool.name}" /></td>
 				</tr>

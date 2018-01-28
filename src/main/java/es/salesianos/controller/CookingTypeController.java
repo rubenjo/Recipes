@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import es.salesianos.model.CookingType;
 import es.salesianos.service.Service;
 
+
 @Controller
 public class CookingTypeController {
 
@@ -23,7 +24,9 @@ public class CookingTypeController {
 	@GetMapping("/CookingType")
 	public ModelAndView index() {
 		log.debug("entrando a insertar nuevo tipo de cocina");
-		return new ModelAndView("cookingType", "command", new CookingType());
+		ModelAndView modelAndView = new ModelAndView("cookingType", "command", new CookingType());
+		modelAndView.addObject("cookingTypes", service.listAll());
+		return modelAndView;
 	}
 
 	@PostMapping("/cookingTypeInsert")
@@ -31,5 +34,6 @@ public class CookingTypeController {
 		log.debug("inserting cookingType");
 		service.insert(cookingType);
 		return new ModelAndView("cookingType", "command", new CookingType());
-}
+	}
+
 }
